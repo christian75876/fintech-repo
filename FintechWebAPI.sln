@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FintechWebAPI", "FintechWeb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FintechLibrary", "FintechLibrary\FintechLibrary.csproj", "{2655C72C-DFAC-4F24-B3AB-120B08442EC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FintechMvc", "FintechMvc\FintechMvc.csproj", "{A5DDFAD2-2CA3-4FD9-8FF0-0C4C069DB92C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2655C72C-DFAC-4F24-B3AB-120B08442EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2655C72C-DFAC-4F24-B3AB-120B08442EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2655C72C-DFAC-4F24-B3AB-120B08442EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5DDFAD2-2CA3-4FD9-8FF0-0C4C069DB92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5DDFAD2-2CA3-4FD9-8FF0-0C4C069DB92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5DDFAD2-2CA3-4FD9-8FF0-0C4C069DB92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5DDFAD2-2CA3-4FD9-8FF0-0C4C069DB92C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

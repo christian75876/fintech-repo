@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FintechMvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8355b73a70f4e65cebe30bb8bcc47f0d4ffc903")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dc8e627b9727275817a4aab56b090b64965c700")]
 [assembly: System.Reflection.AssemblyProductAttribute("FintechMvc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FintechMvc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
