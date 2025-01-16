@@ -39,13 +39,27 @@ namespace FintechWebAPI.Controllers;
             var cuenta = await _context.cuentas.FindAsync(id);
             return cuenta == null ? NotFound() : CuentaMapper.CuentaDto(cuenta);
         }
-        
+        public class CuentaRequest
+        {
+            public AccountDTO cuentaDto { get; set; }
+        }
         //Post: api/cuentas
         [HttpPost]
-        public async Task<ActionResult<AccountDTO>> CreateCuenta(AccountDTO cuentaDto)
+        public async Task<ActionResult<AccountDTO>> CreateCuenta([FromBody] CuentaRequest request)
         {
+            if (request == null || request.cuentaDto == null)
+            {
+                return BadRequest("La solicitud no contiene un campo 'request' válido.");
+            }
+
+            var cuentaDto = request.cuentaDto;
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var cuenta = CuentaMapper.ToEntity(cuentaDto);
-            
             _context.cuentas.Add(cuenta);
             await _context.SaveChangesAsync();
             var resultDto = CuentaMapper.CuentaDto(cuenta);

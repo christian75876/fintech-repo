@@ -44,6 +44,7 @@ public class CuentasController: Controller
 
          var dto = new AccountDTO
          {
+             Id = 0,
              Balance = vm.Balance,
              AccountType = vm.AccountType,
              AccountNumber = vm.AccountNumber,
