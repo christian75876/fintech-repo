@@ -12,7 +12,7 @@ namespace FintechLibrary.DTOs
         ahorros, corriente
     }
 
-    internal class AccountDTO
+    public class AccountDTO
     {
         public int Id { get; set; }
         public string AccountNumber { get; set; }

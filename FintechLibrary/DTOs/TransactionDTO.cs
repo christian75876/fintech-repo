@@ -12,7 +12,7 @@ namespace FintechLibrary.DTOs
         transfer_deposit,
         transfer_withdrawal
     }
-    internal class TransactionDTO
+    public class TransactionDTO
     {
         public int Id { get; set; }
         public int? OriginAccountId { get; set; }
