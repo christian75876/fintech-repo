@@ -23,8 +23,12 @@ namespace FintechLibrary.services
             {
                 var response = await _httpClient.GetAsync(endpoint);
                 response.EnsureSuccessStatusCode();
-                var datos =await response.Content.ReadFromJsonAsync<List<T>>();
-                return datos == null ? throw new Exception("La respuesta del servidor fue vacia o no contenia datos") : datos;
+                var datos = await response.Content.ReadFromJsonAsync<List<T>>();
+                if (datos == null || !datos.Any())
+                {
+                    throw new Exception("La respuesta del servidor fue vacía o no contenía datos.");
+                }
+                return datos;
             }
             catch (HttpRequestException ex)
             {
@@ -35,6 +39,7 @@ namespace FintechLibrary.services
                 throw new Exception("Ocurrió un error inesperado.", ex);
             }
         }
+
 
         public async Task<T> PostAsync<T>(string endpoint, T data)
         {
@@ -54,5 +59,43 @@ namespace FintechLibrary.services
                 throw new Exception("Ocurrió un error inesperado.", ex);
             }
         }
+        
+        public async Task<T> PutAsync<T>(string endpoint, T data)
+        {
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync(endpoint, data);
+                response.EnsureSuccessStatusCode();
+                var datos = await response.Content.ReadFromJsonAsync<T>();
+                return datos == null ? throw new Exception("La respuesta del servidor fue vacía o no contenía datos") : datos;
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al realizar PUT en {endpoint}: {ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado.", ex);
+            }
+        }
+
+        public async Task DeleteAsync(string endpoint)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al realizar DELETE en {endpoint}: {ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado.", ex);
+            }
+        }
+
+        
     }
 }

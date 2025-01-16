@@ -1,0 +1,44 @@
+@model IEnumerable<FintechLibrary.DTOs.AccountDTO>
+
+@{
+    ViewData["Title"] = "Cuentas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Número de Cuenta</th>
+            <th>Balance</th>
+            <th>Tipo de Cuenta</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var cuenta in Model)
+        {
+            <tr>
+                <td>@cuenta.Id</td>
+                <td>@cuenta.AccountNumber</td>
+                <td>@cuenta.Balance</td>
+                <td>@cuenta.AccountType</td>
+                <td>
+                    <!-- Aquí podrías agregar botones para Editar, Ver o Eliminar -->
+                    <a href="@Url.Action("Edit", new { id = cuenta.Id })" class="btn btn-primary">Editar</a>
+                    <a href="@Url.Action("Details", new { id = cuenta.Id })" class="btn btn-info">Ver</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay cuentas disponibles.</p>
+}
+
+<a href="@Url.Action("Create")" class="btn btn-success">Crear Nueva Cuenta</a>

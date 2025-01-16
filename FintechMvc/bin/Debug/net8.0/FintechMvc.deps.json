@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FintechMvc/1.0.0": {
+        "dependencies": {
+          "FintechLibrary": "1.0.0"
+        },
+        "runtime": {
+          "FintechMvc.dll": {}
+        }
+      },
+      "FintechLibrary/1.0.0": {
+        "runtime": {
+          "FintechLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FintechMvc/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FintechLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
