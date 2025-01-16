@@ -1,5 +1,6 @@
 using FintechLibrary.DTOs;
 using FintechLibrary.services;
+using FintechMvc.Class;
 using FintechMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -40,7 +41,12 @@ public class CuentasController: Controller
     [HttpPost]
     public async Task<IActionResult> Create(CuentaViewModel vm)
     {
-         if (!ModelState.IsValid) return View(vm);
+        TempData["SuccessMessage"] = "Vamos bien, procesando...";
+        // if (!ModelState.IsValid)
+        // {
+        //     Console.WriteLine("Entro aca Mk!!");
+        //     return View(vm);
+        // }
 
          var dto = new AccountDTO
          {
@@ -49,10 +55,16 @@ public class CuentasController: Controller
              AccountType = vm.AccountType,
              AccountNumber = vm.AccountNumber,
          };
-         
-         try
+
+         var request = new CuentaRequest
          {
-            var result = await _apiCaller.PostAsync($"{_baseUrl}/cuentas", dto);
+             cuentaDto = dto,
+         };
+         
+         Console.WriteLine($"dto: Id={dto.Id}, AccountNumber={dto.AccountNumber}, Balance={dto.Balance}, AccountType={dto.AccountType}");         try
+         {
+            var result = await _apiCaller.PostAsync($"{_baseUrl}/Cuentas", request);
+           Console.WriteLine("mk result***********:",result);
             if(result != null) return RedirectToAction(nameof(Index));
          }
          catch (Exception e)
