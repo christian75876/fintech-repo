@@ -41,4 +41,50 @@ else
     <p>No hay cuentas disponibles.</p>
 }
 
-<a href="@Url.Action("Create")" class="btn btn-success">Crear Nueva Cuenta</a>
+<a id="createAccountButton" class="btn btn-success">Crear Nueva Cuenta</a>
+
+<!-- Modal para Crear Cuenta -->
+<div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createAccountModalLabel">Crear Nueva Cuenta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de Crear Cuenta -->
+                <form id="createAccountForm">
+                    <div class="form-group">
+                        <label for="AccountNumber">Número de Cuenta</label>
+                        <input type="text" id="AccountNumber" class="form-control" />
+                        <span id="AccountNumberError" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Balance">Balance</label>
+                        <input type="number" id="Balance" class="form-control" />
+                        <span id="BalanceError" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="AccountType">Tipo de Cuenta</label>
+                        <select id="AccountType" class="form-control">
+                            <option value="0">Ahorro</option>
+                            <option value="1">Corriente</option>
+                            <option value="2">Crédito</option>
+                        </select>
+                        <span id="AccountTypeError" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/site.js"></script>
+}
