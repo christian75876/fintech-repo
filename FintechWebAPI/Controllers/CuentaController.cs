@@ -9,7 +9,7 @@ namespace FintechWebAPI.Controllers;
 
     [ApiController]
     [Route("api/[controller]")]
-    public class CuentasController : Controller
+    public class CuentasController : ControllerBase
     {
         private readonly DataContext _context;
 
@@ -20,7 +20,7 @@ namespace FintechWebAPI.Controllers;
 
         //Get: api/cuentas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cuenta>>> GetCuentas()
+        public async Task<ActionResult<IEnumerable<AccountDTO>>> GetCuentas()
         {
             var cuentas = await _context.cuentas.ToArrayAsync();
             if (cuentas == null || cuentas.Length == 0)
@@ -53,7 +53,7 @@ namespace FintechWebAPI.Controllers;
         }
         
         //put: api/cuentas/{id}
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async Task<ActionResult> UpdateCuenta(int id, AccountDTO cuentaDto)
         {
             if (id != cuentaDto.Id)
@@ -91,7 +91,7 @@ namespace FintechWebAPI.Controllers;
         }
         
         //Delete: api/cuentas/{id}
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCuenta(int id)
         {
             var cuenta = await _context.cuentas.FindAsync(id);
