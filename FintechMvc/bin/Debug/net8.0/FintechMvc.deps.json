@@ -16,7 +16,10 @@
       },
       "FintechLibrary/1.0.0": {
         "runtime": {
-          "FintechLibrary.dll": {}
+          "FintechLibrary.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

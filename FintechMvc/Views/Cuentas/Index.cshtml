@@ -21,70 +21,49 @@
         <tbody>
         @foreach (var cuenta in Model)
         {
-            <tr>
+            <tr id="row-@cuenta.Id">
                 <td>@cuenta.Id</td>
                 <td>@cuenta.AccountNumber</td>
                 <td>@cuenta.Balance</td>
                 <td>@cuenta.AccountType</td>
                 <td>
                     <!-- Aquí podrías agregar botones para Editar, Ver o Eliminar -->
-                    <a href="@Url.Action("Edit", new { id = cuenta.Id })" class="btn btn-primary">Editar</a>
-                    <a href="@Url.Action("Details", new { id = cuenta.Id })" class="btn btn-info">Ver</a>
+                    <a class="btn btn-primary btn-update" data-id="@cuenta.Id">Editar</a>
+                    <button class="btn btn-danger btn-delete" data-id="@cuenta.Id">Eliminar</button>
                 </td>
             </tr>
         }
         </tbody>
     </table>
+    <p>Valor actual: <span id="contador">0</span></p>
+    <button class="btn-sumar">Sumar 1</button>
 }
 else
 {
     <p>No hay cuentas disponibles.</p>
 }
 
-<a id="createAccountButton" class="btn btn-success">Crear Nueva Cuenta</a>
+<a href="@Url.Action("Create")" class="btn btn-success">Crear Nueva Cuenta</a>
 
-<!-- Modal para Crear Cuenta -->
-<div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createAccountModalLabel">Crear Nueva Cuenta</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario de Crear Cuenta -->
-                <form id="createAccountForm">
-                    <div class="form-group">
-                        <label for="AccountNumber">Número de Cuenta</label>
-                        <input type="text" id="AccountNumber" class="form-control" />
-                        <span id="AccountNumberError" class="text-danger"></span>
-                    </div>
+<!-- Modal o formulario de edición -->
+<div id="editModal" style="display:none;">
+    <h2>Editar Cuenta</h2>
+    <form id="editForm">
+        <input type="hidden" id="accountId" />
+        <label for="accountNumber">Número de Cuenta:</label>
+        <input type="text" id="accountNumber" required><br><br>
+        
+        <label for="balance">Balance:</label>
+        <input type="number" id="balance" required><br><br>
 
-                    <div class="form-group">
-                        <label for="Balance">Balance</label>
-                        <input type="number" id="Balance" class="form-control" />
-                        <span id="BalanceError" class="text-danger"></span>
-                    </div>
+        <label for="accountType">Tipo de Cuenta:</label>
+        <select id="accountType" required>
+            <option value="0">Ahorros</option>
+            <option value="1">Corriente</option>
+        </select><br><br>
 
-                    <div class="form-group">
-                        <label for="AccountType">Tipo de Cuenta</label>
-                        <select id="AccountType" class="form-control">
-                            <option value="0">Ahorro</option>
-                            <option value="1">Corriente</option>
-                            <option value="2">Crédito</option>
-                        </select>
-                        <span id="AccountTypeError" class="text-danger"></span>
-                    </div>
 
-                    <button type="submit" class="btn btn-primary">Crear Cuenta</button>
-                </form>
-            </div>
-        </div>
-    </div>
+        <button type="submit">Actualizar</button>
+        <button type="button" id="cancelEdit">Cancelar</button>
+    </form>
 </div>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/site.js"></script>
-}
